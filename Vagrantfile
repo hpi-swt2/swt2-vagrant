@@ -61,7 +61,24 @@ Vagrant.configure("2") do |config|
             encoding: "UTF-8",
             locale: "en_US.UTF-8",
             extensions: "hstore"
-          }
+          },
+          {
+            name: "hpi_swt2_test",
+            owner: "postgres",
+            template: "template0",
+            encoding: "UTF-8",
+            locale: "en_US.UTF-8",
+            extensions: "hstore"
+          },
+          {
+            name: "hpi_swt2_production",
+            owner: "postgres",
+            template: "template0",
+            encoding: "UTF-8",
+            locale: "en_US.UTF-8",
+            extensions: "hstore"
+          },
+
         ]
       },
       
