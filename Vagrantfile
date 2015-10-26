@@ -2,10 +2,10 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  #config.vm.box = "ubuntu/trusty64"
-  #config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  config.vm.box = "ubuntu/trusty32"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  #config.vm.box = "ubuntu/trusty32"
+  #config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
@@ -47,11 +47,18 @@ Vagrant.configure("2") do |config|
             createdb: true,
             login: true
           },
+          {
+            username: "vagrant",
+            password: "",
+            superuser: false,
+            createdb: true,
+            login: true
+          },
         ],
        databases: [
           {
             name: "hpi_swt2_dev",
-            owner: "postgres",
+            owner: "vagrant",
             template: "template0",
             encoding: "UTF-8",
             locale: "en_US.UTF-8",
@@ -59,7 +66,7 @@ Vagrant.configure("2") do |config|
           },
           {
             name: "hpi_swt2_test",
-            owner: "postgres",
+            owner: "vagrant",
             template: "template0",
             encoding: "UTF-8",
             locale: "en_US.UTF-8",
@@ -67,7 +74,7 @@ Vagrant.configure("2") do |config|
           },
           {
             name: "hpi_swt2_production",
-            owner: "postgres",
+            owner: "vagrant",
             template: "template0",
             encoding: "UTF-8",
             locale: "en_US.UTF-8",
