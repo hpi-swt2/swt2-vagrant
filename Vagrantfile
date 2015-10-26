@@ -2,11 +2,11 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  #config.vm.box = "ubuntu/trusty32"
-  #config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
-  
+  #config.vm.box = "ubuntu/trusty64"
+  #config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box = "ubuntu/trusty32"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
+
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
     vb.customize ["modifyvm", :id, "--cpus", 2]
@@ -19,9 +19,7 @@ Vagrant.configure("2") do |config|
 
     chef.add_recipe "apt"
     chef.add_recipe "ruby_build"
-    chef.add_recipe "rbenv::user"
-    chef.add_recipe "rbenv::vagrant"
-    chef.add_recipe "nano"
+    chef.add_recipe "ruby_rbenv::user"
     chef.add_recipe "vim"
     chef.add_recipe "postgresql::server"
     chef.add_recipe "postgresql::client"
@@ -31,13 +29,10 @@ Vagrant.configure("2") do |config|
       rbenv: {
         user_installs: [{
           user: 'vagrant',
-          rubies: ["2.1.3","2.1.2"],
-          global: "2.1.2",
+          rubies: ["2.2.2"],
+          global: "2.2.2",
           gems: {
-            "2.1.2" => [
-              { name: "bundler" }
-            ],
-            "2.1.3" => [
+            "2.2.2" => [
               { name: "bundler" }
             ]
           }
@@ -81,7 +76,7 @@ Vagrant.configure("2") do |config|
 
         ]
       },
-      
+
     }
   end
 
